@@ -14,19 +14,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-python@v4
-        with: { python-version: '3.x' }
-      - run: pip install PyGithub
-      - env:
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install PyGithub
+
+      - name: Run move processor
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: python scripts/process_move.py
-      - run: |
+
+      - name: Commit move result
+        run: |
           git config --global user.name 'Battleship Bot'
           git config --global user.email 'bot@example.com'
-          git add game/board.json game/leaderboard.json README.md
-          git commit -m "Update board and leaderboard"
+          git add game/board.json game/leaderboard.json README.md commit_message.txt
+          COMMIT_MSG=$(cat commit_message.txt)
+          git commit -m "$COMMIT_MSG"
           git push
 
   reset-game:
@@ -34,15 +43,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-python@v4
-        with: { python-version: '3.x' }
-      - run: pip install PyGithub
-      - env:
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install PyGithub
+
+      - name: Run reset script
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO_NAME: ${{ github.repository }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: python scripts/reset_game.py
-      - run: |
+
+      - name: Commit reset
+        run: |
           git config --global user.name 'Battleship Bot'
           git config --global user.email 'bot@example.com'
           git add game/board.json game/ships.json game/leaderboard.json README.md rounds/
