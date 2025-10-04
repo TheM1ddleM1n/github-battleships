@@ -8,7 +8,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 
 ## How to Play github-battleships?
 
-1. **Open a new issue** with your move in the title: Move: B4
+1. **Open a new issue** with your move in the title: `Move: B4`
 
 *(Only one move per issue, please!)*
 
