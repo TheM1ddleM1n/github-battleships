@@ -39,11 +39,13 @@ try:
 except (FileNotFoundError, json.JSONDecodeError):
     leaderboard = {}
 
-# Cooldown check
+# Cooldown check (skip if owner)
 now = datetime.utcnow()
 player = leaderboard.get(username, {"hits": 0, "misses": 0, "streak": 0})
 last_time_str = player.get("last_move")
-if last_time_str:
+
+# Skip cooldown if player is the repo owner
+if username != "TheM1ddleM1n" and last_time_str:
     last_time = datetime.fromisoformat(last_time_str)
     cooldown = timedelta(hours=2)
     remaining = cooldown - (now - last_time)
@@ -51,6 +53,7 @@ if last_time_str:
         wait_hours = remaining.total_seconds() / 3600
         issue.create_comment(f"🛑 Woah @{username}, slow down! You have to wait {wait_hours:.1f} more hour(s) to try again!")
         exit()
+
 
 # Process move
 if move not in board:
