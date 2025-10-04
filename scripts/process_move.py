@@ -153,6 +153,14 @@ readme = readme[:lb_start] + "<!-- LEADERBOARD_START -->\n" + new_leaderboard + 
 with open("README.md", "w") as f:
     f.write(readme)
 
+# Save commit message for workflow
+with open("commit_message.txt", "w") as f:
+    if board[move] == "X":
+        f.write(f"@{username} has hit!")
+    else:
+        f.write(f"@{username} has missed!")
+
+
 # Wait 30 seconds before closing the issue
 issue.create_comment("🕒 Closing this issue in 30 seconds…")
 time.sleep(30)
