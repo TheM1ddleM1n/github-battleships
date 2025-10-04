@@ -28,10 +28,14 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 
 ---
 
-## Leaderboard (coming soon..)
+## 🏅 Leaderboard
 
-Coming soon in [`game/leaderboard.json`](game/leaderboard.json)!  
-Track your hits, misses, and total score.
+<!-- LEADERBOARD_START -->
+| Rank | Player | 🏹 Hits | 💦 Misses | 🎯 Accuracy | 🔥 Streak |
+|------|--------|----------|------------|--------------|------------|
+|      |        |          |            |              |            |
+<!-- LEADERBOARD_END -->
+
 
 ---
 
