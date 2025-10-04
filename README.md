@@ -17,8 +17,6 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 - Update the game board
 - Reply to your issue with the result: `Hit!`, `Miss!`, or `Already Played`
 
-3. **Check the board** in [`game/board.json`](game/board.json) to see progress.
-
 ---
 
 ## The Game Rules
@@ -57,6 +55,7 @@ Ready to fire your first shot?
 
 ## 🎯 Current Game Board
 
+<!-- BOARD_START -->
 |   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
 |---|---|---|---|---|---|---|---|---|---|----|
 | A |   |   |   |   |   |   |   |   |   |    |
@@ -69,5 +68,4 @@ Ready to fire your first shot?
 | H |   |   |   |   |   |   |   |   |   |    |
 | I |   |   |   |   |   |   |   |   |   |    |
 | J |   |   |   |   |   |   |   |   |   |    |
-
-
+<!-- BOARD_END -->
