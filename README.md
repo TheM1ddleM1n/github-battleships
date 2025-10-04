@@ -55,3 +55,19 @@ Open an issue titled `Suggestion:` or `Question:` and let’s make this game eve
 Ready to fire your first shot? 
 **Open an issue and type your move now!** 🎯
 
+## 🎯 Current Game Board
+
+|   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---|---|---|---|---|---|---|---|---|----|
+| A |   |   |   |   |   |   |   |   |   |    |
+| B |   |   |   |   |   |   |   |   |   |    |
+| C |   |   |   |   |   |   |   |   |   |    |
+| D |   |   |   |   |   |   |   |   |   |    |
+| E |   |   |   |   |   |   |   |   |   |    |
+| F |   |   |   |   |   |   |   |   |   |    |
+| G |   |   |   |   |   |   |   |   |   |    |
+| H |   |   |   |   |   |   |   |   |   |    |
+| I |   |   |   |   |   |   |   |   |   |    |
+| J |   |   |   |   |   |   |   |   |   |    |
+
+
