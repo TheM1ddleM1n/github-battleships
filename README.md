@@ -71,5 +71,5 @@ Ready to fire your first shot?
 | G |   |   |   |   |   |   |   |   |   |   |
 | H |   |   |   |   |   |   |   |   |   |   |
 | I |   |   |   |   |   |   |   |   |   |   |
-| J |   |   |   |   |   |   |   |   |   |   |
+| J |   |   |   |   |   |   |   |   |   | X |
 <!-- BOARD_END -->
