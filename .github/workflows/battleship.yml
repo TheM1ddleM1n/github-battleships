@@ -45,6 +45,6 @@ jobs:
       - run: |
           git config --global user.name 'Battleship Bot'
           git config --global user.email 'bot@example.com'
-          git add game/board.json game/ships.json game/leaderboard.json README.md
-          git commit -m "🔄 Game reset with new ship layout"
+          git add game/board.json game/ships.json game/leaderboard.json README.md rounds/
+          git commit -m "🔄 Game reset and round archived"
           git push
