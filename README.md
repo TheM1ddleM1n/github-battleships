@@ -33,7 +33,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 <!-- LEADERBOARD_START -->
 | Rank | Player | 🏹 Hits | 💦 Misses | 🎯 Accuracy | 🔥 Streak |
 |------|--------|----------|------------|--------------|------------|
-|      |        |          |            |              |            |
+| 🥇 | TheM1ddleM1n | 1 | 0 | 1.0 | 1 |
 <!-- LEADERBOARD_END -->
 
 
@@ -62,7 +62,7 @@ Ready to fire your first shot?
 <!-- BOARD_START -->
 |   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| A |   |   |   |   |   |   |   |   |   |   |
+| A |   |   |   | X |   |   |   |   |   |   |
 | B |   |   |   | O |   |   |   |   |   |   |
 | C |   |   |   |   |   |   |   |   |   |   |
 | D |   |   |   |   |   |   |   |   |   |   |
