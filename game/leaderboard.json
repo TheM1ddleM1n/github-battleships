@@ -1,9 +1,9 @@
 {
   "TheM1ddleM1n": {
-    "hits": 3,
+    "hits": 4,
     "misses": 2,
-    "streak": 1,
-    "accuracy": 0.6,
-    "last_move": "2025-10-04T13:44:36.863846"
+    "streak": 2,
+    "accuracy": 0.67,
+    "last_move": "2025-10-04T13:54:54.073415"
   }
 }
