@@ -56,7 +56,7 @@ with open("game/board.json", "w") as f:
 try:
     with open("game/leaderboard.json", "r") as f:
         leaderboard = json.load(f)
-except FileNotFoundError:
+except (FileNotFoundError, json.JSONDecodeError):
     leaderboard = {}
 
 player = leaderboard.get(username, {"hits": 0, "misses": 0, "streak": 0})
@@ -94,10 +94,10 @@ def render_board(board):
         rows += f"| {row} | " + " | ".join(cells) + " |\n"
     return header + divider + rows
 
-# Render leaderboard with medals and emojis
+# Render leaderboard with avatars
 def render_leaderboard(leaderboard):
-    header = "| Rank | Player | 🏹 Hits | 💦 Misses | 🎯 Accuracy | 🔥 Streak |\n"
-    divider = "|------|--------|----------|------------|--------------|------------|\n"
+    header = "| Rank | Player | 🖼️ Avatar | 🏹 Hits | 💦 Misses | 🎯 Accuracy | 🔥 Streak |\n"
+    divider = "|------|--------|-----------|----------|------------|--------------|------------|\n"
     rows = ""
 
     sorted_players = sorted(
@@ -107,15 +107,10 @@ def render_leaderboard(leaderboard):
     )
 
     for i, (player, stats) in enumerate(sorted_players, start=1):
-        if i == 1:
-            rank = "🥇"
-        elif i == 2:
-            rank = "🥈"
-        elif i == 3:
-            rank = "🥉"
-        else:
-            rank = f"{i}"
-        row = f"| {rank} | {player} | {stats['hits']} | {stats['misses']} | {stats['accuracy']} | {stats['streak']} |\n"
+        rank = ["🥇", "🥈", "🥉"][i - 1] if i <= 3 else str(i)
+        avatar_url = f"https://github.com/{player}.png"
+        avatar_md = f"<img src='{avatar_url}' width='32' height='32'>"
+        row = f"| {rank} | @{player} | {avatar_md} | {stats['hits']} | {stats['misses']} | {stats['accuracy']} | {stats['streak']} |\n"
         rows += row
 
     return header + divider + rows
