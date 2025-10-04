@@ -45,7 +45,7 @@ player = leaderboard.get(username, {"hits": 0, "misses": 0, "streak": 0})
 last_time_str = player.get("last_move")
 if last_time_str:
     last_time = datetime.fromisoformat(last_time_str)
-    cooldown = timedelta(hours=5)
+    cooldown = timedelta(hours=2)
     remaining = cooldown - (now - last_time)
     if remaining.total_seconds() > 0:
         wait_hours = remaining.total_seconds() / 3600
@@ -151,5 +151,6 @@ with open("README.md", "w") as f:
     f.write(readme)
 
 # Wait 30 seconds before closing the issue
+issue.create_comment("🕒 Closing this issue in 30 seconds…")
 time.sleep(30)
 issue.edit(state="closed")
