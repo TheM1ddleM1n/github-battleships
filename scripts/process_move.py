@@ -1,6 +1,7 @@
 import os
 import json
 import re
+import time
 from github import Github
 
 # Load environment variables
@@ -133,3 +134,8 @@ readme = readme[:lb_start] + "<!-- LEADERBOARD_START -->\n" + new_leaderboard + 
 
 with open("README.md", "w") as f:
     f.write(readme)
+
+# Wait 30 seconds before closing the issue
+issue.create_comment("🕒 Closing this issue in 30 seconds…")
+time.sleep(30)
+issue.edit(state="closed")
