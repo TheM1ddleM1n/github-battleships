@@ -1,0 +1,40 @@
+name: Battleship Move
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  process-move:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install PyGithub
+
+      - name: Run move processor
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: python scripts/process_move.py
+
+      - name: Commit board and README update
+        run: |
+          git config --global user.name 'Battleship Bot'
+          git config --global user.email 'bot@example.com'
+          git add game/board.json README.md
+          git commit -m "Update board and README after move"
+          git push
