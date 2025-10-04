@@ -1,8 +1,8 @@
 {
   "TheM1ddleM1n": {
     "hits": 2,
-    "misses": 0,
-    "streak": 2,
-    "accuracy": 1.0
+    "misses": 1,
+    "streak": 0,
+    "accuracy": 0.67
   }
 }
