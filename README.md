@@ -25,6 +25,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 - Ships are hidden — you won't know their locations!
 - Hits are marked with `"X"`, misses with `"O"`
 - First player to sink all ships wins eternal glory (and maybe a badge 👑)
+- WHEN THE GAME IS COMPLETED please make a issue with the comment `Reset Game`
 
 ---
 
