@@ -2,6 +2,7 @@ import os
 import json
 import re
 import time
+from datetime import datetime, timedelta
 from github import Github
 
 # Load environment variables
@@ -31,6 +32,26 @@ with open("game/board.json", "r") as f:
 with open("game/ships.json", "r") as f:
     ships = json.load(f)
 
+# Load leaderboard
+try:
+    with open("game/leaderboard.json", "r") as f:
+        leaderboard = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError):
+    leaderboard = {}
+
+# Cooldown check
+now = datetime.utcnow()
+player = leaderboard.get(username, {"hits": 0, "misses": 0, "streak": 0})
+last_time_str = player.get("last_move")
+if last_time_str:
+    last_time = datetime.fromisoformat(last_time_str)
+    cooldown = timedelta(hours=5)
+    remaining = cooldown - (now - last_time)
+    if remaining.total_seconds() > 0:
+        wait_hours = remaining.total_seconds() / 3600
+        issue.create_comment(f"🛑 Woah @{username}, slow down! You have to wait {wait_hours:.1f} more hour(s) to try again!")
+        exit()
+
 # Process move
 if move not in board:
     issue.create_comment(f"❌ `{move}` is not a valid cell.")
@@ -54,13 +75,6 @@ with open("game/board.json", "w") as f:
     json.dump(board, f, indent=2)
 
 # Update leaderboard
-try:
-    with open("game/leaderboard.json", "r") as f:
-        leaderboard = json.load(f)
-except (FileNotFoundError, json.JSONDecodeError):
-    leaderboard = {}
-
-player = leaderboard.get(username, {"hits": 0, "misses": 0, "streak": 0})
 if board[move] == "X":
     player["hits"] += 1
     player["streak"] += 1
@@ -70,6 +84,7 @@ else:
 
 total = player["hits"] + player["misses"]
 player["accuracy"] = round(player["hits"] / total, 2) if total else 0.0
+player["last_move"] = now.isoformat()
 leaderboard[username] = player
 
 with open("game/leaderboard.json", "w") as f:
@@ -136,6 +151,5 @@ with open("README.md", "w") as f:
     f.write(readme)
 
 # Wait 30 seconds before closing the issue
-issue.create_comment("🕒 Closing this issue in 30 seconds…")
 time.sleep(30)
 issue.edit(state="closed")
