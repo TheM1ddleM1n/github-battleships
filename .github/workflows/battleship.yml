@@ -1,4 +1,4 @@
-name: Battleship Move
+name: Battleship Game
 
 on:
   issues:
@@ -10,31 +10,41 @@ permissions:
 
 jobs:
   process-move:
+    if: startsWith(github.event.issue.title, 'Move:')
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: pip install PyGithub
-
-      - name: Run move processor
-        env:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with: { python-version: '3.x' }
+      - run: pip install PyGithub
+      - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: python scripts/process_move.py
-
-      - name: Commit board and README update
-        run: |
+      - run: |
           git config --global user.name 'Battleship Bot'
           git config --global user.email 'bot@example.com'
-          git add game/board.json README.md
-          git commit -m "Update board and README after move"
+          git add game/board.json game/leaderboard.json README.md
+          git commit -m "Update board and leaderboard"
+          git push
+
+  reset-game:
+    if: github.event.issue.title == 'Reset Game'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with: { python-version: '3.x' }
+      - run: pip install PyGithub
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_NAME: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: python scripts/reset_game.py
+      - run: |
+          git config --global user.name 'Battleship Bot'
+          git config --global user.email 'bot@example.com'
+          git add game/board.json game/ships.json game/leaderboard.json README.md
+          git commit -m "🔄 Game reset with new ship layout"
           git push
