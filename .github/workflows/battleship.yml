@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   process-move:
-    if: startsWith(github.event.issue.title, 'Move:') || contains(github.event.issue.body, '/move')
+    if: startsWith(github.event.issue.title, 'Move:') || startsWith(github.event.issue.title, '/move') || contains(github.event.issue.body, '/move')
     runs-on: ubuntu-latest
     env:
       BOARD_JSON: ${{ secrets.BOARD_JSON }}
@@ -42,7 +42,6 @@ jobs:
         run: |
           git config --global user.name 'Battleship Bot'
           git config --global user.email 'bot@example.com'
-          echo "Update README with latest move" > commit_message.txt
           git add README.md
           COMMIT_MSG=$(cat commit_message.txt)
           git commit -m "$COMMIT_MSG"
