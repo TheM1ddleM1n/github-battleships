@@ -67,7 +67,7 @@ jobs:
         run: pip install PyGithub
 
       - name: Download game state artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: game-state
           path: game
@@ -88,7 +88,7 @@ jobs:
           git push
 
       - name: Upload fresh game state
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: game-state
           path: |
