@@ -15,11 +15,15 @@ g = Github(GITHUB_TOKEN)
 repo = g.get_repo(REPO_NAME)
 issue = repo.get_issue(number=ISSUE_NUMBER)
 username = issue.user.login
+user_id = str(issue.user.id)  # Use GitHub numeric ID for tracking
 
-# Extract move from issue title
-match = re.match(r"Move:\s*([A-J](?:10|[1-9]))", issue.title.strip(), re.IGNORECASE)
+# Extract move from title or body
+move_pattern = r"(?:/move|Move:)\s*([A-J](?:10|[1-9]))"
+title_match = re.search(move_pattern, issue.title, re.IGNORECASE)
+body_match = re.search(move_pattern, issue.body or "", re.IGNORECASE)
+match = title_match or body_match
 if not match:
-    issue.create_comment("❌ Invalid move format. Use `Move: B4`.")
+    issue.create_comment("❌ Invalid move format. Use `/move B4` in the title or comment.")
     exit()
 
 move = match.group(1).upper()
@@ -41,11 +45,10 @@ except (FileNotFoundError, json.JSONDecodeError):
 
 # Cooldown check (skip if owner)
 now = datetime.utcnow()
-player = leaderboard.get(username, {"hits": 0, "misses": 0, "streak": 0})
+player = leaderboard.get(user_id, {"hits": 0, "misses": 0, "streak": 0})
 last_time_str = player.get("last_move")
 
-# Skip cooldown if player is the repo owner
-if username != "TheM1ddleM1n" and last_time_str:
+if user_id != "99135547" and last_time_str:  # Replace with your actual GitHub user ID
     last_time = datetime.fromisoformat(last_time_str)
     cooldown = timedelta(hours=2)
     remaining = cooldown - (now - last_time)
@@ -53,7 +56,6 @@ if username != "TheM1ddleM1n" and last_time_str:
         wait_hours = remaining.total_seconds() / 3600
         issue.create_comment(f"🛑 Woah @{username}, slow down! You have to wait {wait_hours:.1f} more hour(s) to try again!")
         exit()
-
 
 # Process move
 if move not in board:
@@ -88,7 +90,7 @@ else:
 total = player["hits"] + player["misses"]
 player["accuracy"] = round(player["hits"] / total, 2) if total else 0.0
 player["last_move"] = now.isoformat()
-leaderboard[username] = player
+leaderboard[user_id] = player
 
 with open("game/leaderboard.json", "w") as f:
     json.dump(leaderboard, f, indent=2)
@@ -101,7 +103,7 @@ if all_ship_cells.issubset(hit_cells):
     issue.create_comment(f"🎉 `{username}` has sunk all ships and **won the game**! 🏆")
 
 # Comment result
-issue.create_comment(result)
+issue.create_comment(f"@{username} has hit!" if board[move] == "X" else f"@{username} has missed!")
 
 # Render board as markdown table
 def render_board(board):
@@ -125,11 +127,12 @@ def render_leaderboard(leaderboard):
         reverse=True
     )
 
-    for i, (player, stats) in enumerate(sorted_players, start=1):
+    for i, (uid, stats) in enumerate(sorted_players, start=1):
+        player_name = repo.get_user(int(uid)).login
         rank = ["🥇", "🥈", "🥉"][i - 1] if i <= 3 else str(i)
-        avatar_url = f"https://github.com/{player}.png"
+        avatar_url = f"https://github.com/{player_name}.png"
         avatar_md = f"<img src='{avatar_url}' width='32' height='32'>"
-        row = f"| {rank} | @{player} | {avatar_md} | {stats['hits']} | {stats['misses']} | {stats['accuracy']} | {stats['streak']} |\n"
+        row = f"| {rank} | @{player_name} | {avatar_md} | {stats['hits']} | {stats['misses']} | {stats['accuracy']} | {stats['streak']} |\n"
         rows += row
 
     return header + divider + rows
@@ -159,7 +162,6 @@ with open("commit_message.txt", "w") as f:
         f.write(f"@{username} has hit!")
     else:
         f.write(f"@{username} has missed!")
-
 
 # Wait 30 seconds before closing the issue
 issue.create_comment("🕒 Closing this issue in 30 seconds…")
