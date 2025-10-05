@@ -35,6 +35,7 @@ board = json.loads(BOARD_JSON)
 ships = json.loads(SHIPS_JSON)
 
 # Load or create leaderboard
+os.makedirs("game", exist_ok=True)
 leaderboard_path = "game/leaderboard.json"
 if os.path.exists(leaderboard_path):
     with open(leaderboard_path, "r") as f:
@@ -44,7 +45,7 @@ else:
 
 # Cooldown check
 now = datetime.utcnow()
-player = leaderboard.get(user_id, {"hits": 0, "misses": 0, "streak": 0})
+player = leaderboard.get(user_id, {"hits": 0, "misses": 0, "streak": 0, "username": username})
 last_time_str = player.get("last_move")
 
 if user_id != "99135547" and last_time_str:
@@ -85,9 +86,9 @@ else:
 total = player["hits"] + player["misses"]
 player["accuracy"] = round(player["hits"] / total, 2) if total else 0.0
 player["last_move"] = now.isoformat()
+player["username"] = username
 leaderboard[user_id] = player
 
-os.makedirs("game", exist_ok=True)
 with open(leaderboard_path, "w") as f:
     json.dump(leaderboard, f, indent=2)
 
@@ -124,10 +125,7 @@ def render_leaderboard(leaderboard):
     )
 
     for i, (uid, stats) in enumerate(sorted_players, start=1):
-        try:
-            player_name = repo.get_user(int(uid)).login
-        except:
-            player_name = f"user-{uid}"
+        player_name = stats.get("username", f"user-{uid}")
         rank = ["🥇", "🥈", "🥉"][i - 1] if i <= 3 else str(i)
         avatar_url = f"https://github.com/{player_name}.png"
         avatar_md = f"<img src='{avatar_url}' width='32' height='32'>"
