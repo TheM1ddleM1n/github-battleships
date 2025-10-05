@@ -10,7 +10,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 
 1. **Open a new issue** with your move in the title: `Move: B4`
 
-*(Only one move per issue, please!)*
+*(Only one move per issue, please! 2nd thing - DO NOT SPAM B4 B5 B6 B7... etc)*
 
 2. The bot will:
 - Check if your move is valid
