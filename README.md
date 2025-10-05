@@ -1,4 +1,4 @@
-# 🚢 GitHub Battleships
+# 🚢 GitHub Battleships!
 
 Welcome to **GitHub Battleships** — a turn-based game powered entirely by GitHub Issues and Actions/Secrets!
 
