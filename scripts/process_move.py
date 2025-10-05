@@ -9,13 +9,15 @@ from github import Github
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 REPO_NAME = os.getenv("GITHUB_REPOSITORY")
 ISSUE_NUMBER = int(os.getenv("ISSUE_NUMBER"))
+BOARD_JSON = os.getenv("BOARD_JSON", "{}")
+SHIPS_JSON = os.getenv("SHIPS_JSON", "{}")
+user_id = os.getenv("GITHUB_ACTOR_ID")
 
 # Connect to GitHub
 g = Github(GITHUB_TOKEN)
 repo = g.get_repo(REPO_NAME)
 issue = repo.get_issue(number=ISSUE_NUMBER)
 username = issue.user.login
-user_id = str(issue.user.id)
 
 # Extract move from title or body
 move_pattern = r"(?:/move|Move:)\s*([A-J](?:10|[1-9]))"
@@ -28,28 +30,9 @@ if not match:
 
 move = match.group(1).upper()
 
-# Ensure game folder exists
-os.makedirs("game", exist_ok=True)
-
-# Load or create board
-board_path = "game/board.json"
-if os.path.exists(board_path):
-    with open(board_path, "r") as f:
-        board = json.load(f)
-else:
-    board = {r + str(c): "" for r in "ABCDEFGHIJ" for c in range(1, 11)}
-    with open(board_path, "w") as f:
-        json.dump(board, f, indent=2)
-
-# Load or create ships
-ships_path = "game/ships.json"
-if os.path.exists(ships_path):
-    with open(ships_path, "r") as f:
-        ships = json.load(f)
-else:
-    ships = {}
-    with open(ships_path, "w") as f:
-        json.dump(ships, f, indent=2)
+# Load board and ships from secrets
+board = json.loads(BOARD_JSON)
+ships = json.loads(SHIPS_JSON)
 
 # Load or create leaderboard
 leaderboard_path = "game/leaderboard.json"
@@ -91,10 +74,6 @@ else:
     board[move] = "O"
     result = f"🌊 `{move}` is a **Miss**."
 
-# Update board
-with open(board_path, "w") as f:
-    json.dump(board, f, indent=2)
-
 # Update leaderboard
 if board[move] == "X":
     player["hits"] += 1
@@ -108,6 +87,7 @@ player["accuracy"] = round(player["hits"] / total, 2) if total else 0.0
 player["last_move"] = now.isoformat()
 leaderboard[user_id] = player
 
+os.makedirs("game", exist_ok=True)
 with open(leaderboard_path, "w") as f:
     json.dump(leaderboard, f, indent=2)
 
