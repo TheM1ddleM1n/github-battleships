@@ -2,6 +2,7 @@ import os
 import json
 import re
 import time
+import subprocess
 from datetime import datetime, timedelta
 from github import Github
 
@@ -19,22 +20,22 @@ repo = g.get_repo(REPO_NAME)
 issue = repo.get_issue(number=ISSUE_NUMBER)
 username = issue.user.login
 
-# Extract move from title or body
+# Extract move
 move_pattern = r"(?:/move|Move:)\s*([A-J](?:10|[1-9]))"
 title_match = re.search(move_pattern, issue.title, re.IGNORECASE)
 body_match = re.search(move_pattern, issue.body or "", re.IGNORECASE)
 match = title_match or body_match
 if not match:
-    issue.create_comment("❌ Invalid move format. Use `/move B4` in the title or comment.")
+    issue.create_comment("❌ Invalid move format. Use `/move B4` or `Move: B4`.")
     exit()
 
 move = match.group(1).upper()
 
-# Load board and ships from secrets
+# Load board and ships
 board = json.loads(BOARD_JSON)
 ships = json.loads(SHIPS_JSON)
 
-# Load or create leaderboard
+# Load leaderboard
 os.makedirs("game", exist_ok=True)
 leaderboard_path = "game/leaderboard.json"
 if os.path.exists(leaderboard_path):
@@ -93,11 +94,17 @@ with open(leaderboard_path, "w") as f:
     json.dump(leaderboard, f, indent=2)
 
 # Victory check
+def reveal_ships(board, ships):
+    for coord in ships:
+        if board.get(coord) == "":
+            board[coord] = "🚢"
+
 all_ship_cells = set(ships.keys())
 hit_cells = {cell for cell, mark in board.items() if mark == "X"}
 
 if all_ship_cells and all_ship_cells.issubset(hit_cells):
     issue.create_comment(f"🎉 `{username}` has sunk all ships and **won the game**! 🏆")
+    reveal_ships(board, ships)
 
 # Comment result
 issue.create_comment(result)
@@ -153,9 +160,16 @@ with open("README.md", "w") as f:
 
 # Save commit message
 with open("commit_message.txt", "w") as f:
-    f.write(f"@{username} has hit!" if board[move] == "X" else f"@{username} has missed!")
+    if all_ship_cells.issubset(hit_cells):
+        f.write(f"@{username} has won! Final board revealed.")
+    else:
+        f.write(f"@{username} has hit!" if board[move] == "X" else f"@{username} has missed!")
 
 # Auto-close issue
 issue.create_comment("🕒 Closing this issue in 30 seconds…")
 time.sleep(30)
 issue.edit(state="closed")
+
+# Trigger reset if game ended
+if all_ship_cells.issubset(hit_cells):
+    subprocess.run(["python", "scripts/archive_and_reset.py"])
