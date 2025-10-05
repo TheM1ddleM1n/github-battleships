@@ -1,5 +1,5 @@
 import json, random, os, datetime, time
-from github import Github
+from github import Github, Auth
 
 rows = "ABCDEFGHIJ"
 cols = [str(i) for i in range(1, 11)]
