@@ -87,6 +87,14 @@ player = leaderboard.get(user_key, {
     "games_played": 0
 })
 
+# Ensure all required fields exist (for backward compatibility)
+if "ships_sunk" not in player:
+    player["ships_sunk"] = 0
+if "games_won" not in player:
+    player["games_won"] = 0
+if "games_played" not in player:
+    player["games_played"] = 0
+
 all_time_player = all_time_lb.get(user_key, {
     "username": username,
     "total_hits": 0,
