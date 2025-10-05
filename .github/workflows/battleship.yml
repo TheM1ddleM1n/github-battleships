@@ -35,7 +35,7 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           BOARD_JSON: ${{ secrets.BOARD_JSON }}
           SHIPS_JSON: ${{ secrets.SHIPS_JSON }}
-          GITHUB_ACTOR_ID: ${{ github.event.issue.user.id }}
+          GITHUB_ACTOR_ID: ${{ github.event.issue.user.login }}
         run: python scripts/process_move.py
 
       - name: Commit README and leaderboard update
