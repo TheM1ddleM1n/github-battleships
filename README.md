@@ -34,7 +34,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 <!-- LEADERBOARD_START -->
 | Rank | Player | 🖼️ Avatar | 🏹 Hits | 💦 Misses | 🎯 Accuracy | 🔥 Streak |
 |------|--------|-----------|----------|------------|--------------|------------|
-| 🥇 | @user-192749026 | <img src='https://github.com/user-192749026.png' width='32' height='32'> | 0 | 1 | 0.0 | 0 |
+| 🥇 | @TheM1ddleM1n | <img src='https://github.com/TheM1ddleM1n.png' width='32' height='32'> | 0 | 1 | 0.0 | 0 |
 <!-- LEADERBOARD_END -->
 
 
@@ -63,9 +63,9 @@ Ready to fire your first shot?
 <!-- BOARD_START -->
 |   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| A | X | X | X | X | X |   | O |   |   | O |
+| A | X | X | X | X | X |   |   |   |   | O |
 | B |   |   |   | O |   |   |   |   |   |   |
-| C |   |   |   |   |   |   |   |   |   |   |
+| C | O |   |   |   |   |   |   |   |   |   |
 | D |   |   |   |   |   | O |   |   |   | O |
 | E |   |   | X |   |   |   |   |   |   |   |
 | F |   |   |   |   |   |   |   |   |   |   |
