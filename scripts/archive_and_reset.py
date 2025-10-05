@@ -36,7 +36,7 @@ with open("game/ships.json", "w") as f:
 # Load previous board and leaderboard
 try:
     with open("game/board.json", "r") as f: board = json.load(f)
-    with open("game/leaderboard.json", "r") as f: leaderboard = json.load(f)
+    with open("game2/leaderboard.json", "r") as f: leaderboard = json.load(f)
 except FileNotFoundError:
     board, leaderboard = {}, {}
 
@@ -74,7 +74,7 @@ with open(f"rounds/round_{next_num:03}.json", "w") as f:
 board = {r + c: "" for r in rows for c in cols}
 with open("game/board.json", "w") as f:
     json.dump(board, f, indent=2)
-with open("game/leaderboard.json", "w") as f:
+with open("game2/leaderboard.json", "w") as f:
     json.dump({}, f, indent=2)
 
 # Update README history
