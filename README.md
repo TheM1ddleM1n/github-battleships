@@ -1,8 +1,8 @@
 # 🚢 GitHub Battleships
 
-Welcome to **GitHub Battleships** — a turn-based game powered entirely by GitHub Issues and Actions!
+Welcome to **GitHub Battleships** — a turn-based game powered entirely by GitHub Issues and Actions/Secrets!
 
-Sink ships, climb the leaderboard, and flex your strategic genius — all from the comfort of your GitHub account.
+Sink ships, climb the leaderboard, and flex your strategic genius — all from the comfort from your own GitHub Account!
 
 ---
 
@@ -10,7 +10,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 
 1. **Open a new issue** with your move in the title: `Move: B4`
 
-*(Only one move per issue, please! 2nd thing - DO NOT SPAM B4 B5 B6 B7... etc)*
+*(Only one move per issue, please! 2nd thing THIS IS IMPORTANT - please DO NOT SPAM B4 B5 B6 B7... etc)*
 
 2. The bot will:
 - Check if your move is valid
@@ -43,17 +43,20 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 ## Powered By
 
 - GitHub Actions
+- Github Secrets
 - Python based game logic
 - JSON-based board state
 - Your brilliant moves ofc!
 
 ---
 
-## 💬 Any Questions or Ideas?
+## 💬 Any Questions, Bugs or Ideas?
 
-Open an issue titled `Suggestion:` or `Question:` and let’s make this game even better.
+Open an issue titled `Suggestion:` or `Question:` and let’s make this game even better!
 
 ---
+
+Thanks @DataM0del for opening the first issue! (Bug)
 
 Ready to fire your first shot? 
 **Open an issue and type your move now!** 🎯
