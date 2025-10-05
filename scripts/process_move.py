@@ -36,8 +36,8 @@ board = json.loads(BOARD_JSON)
 ships = json.loads(SHIPS_JSON)
 
 # Load leaderboard
-os.makedirs("game", exist_ok=True)
-leaderboard_path = "game/leaderboard.json"
+os.makedirs("game2", exist_ok=True)
+leaderboard_path = "game2/leaderboard.json"
 if os.path.exists(leaderboard_path):
     with open(leaderboard_path, "r") as f:
         leaderboard = json.load(f)
