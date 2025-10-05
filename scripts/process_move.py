@@ -12,13 +12,16 @@ REPO_NAME = os.getenv("GITHUB_REPOSITORY")
 ISSUE_NUMBER = int(os.getenv("ISSUE_NUMBER"))
 BOARD_JSON = os.getenv("BOARD_JSON", "{}")
 SHIPS_JSON = os.getenv("SHIPS_JSON", "{}")
-user_id = os.getenv("GITHUB_ACTOR_ID")
+user_id = os.getenv("GITHUB_ACTOR_ID")  # This is now the username
 
 # Connect to GitHub
 g = Github(GITHUB_TOKEN)
 repo = g.get_repo(REPO_NAME)
 issue = repo.get_issue(number=ISSUE_NUMBER)
 username = issue.user.login
+
+# Use username as the key instead of user_id
+user_key = username
 
 # Extract move
 move_pattern = r"(?:/move|Move:)\s*([A-J](?:10|[1-9]))"
@@ -46,10 +49,10 @@ else:
 
 # Cooldown check
 now = datetime.utcnow()
-player = leaderboard.get(user_id, {"hits": 0, "misses": 0, "streak": 0, "username": username})
+player = leaderboard.get(user_key, {"hits": 0, "misses": 0, "streak": 0, "username": username})
 last_time_str = player.get("last_move")
 
-if user_id != "99135547" and last_time_str:
+if username != "TheM1ddleM1n" and last_time_str:
     last_time = datetime.fromisoformat(last_time_str)
     cooldown = timedelta(hours=2)
     remaining = cooldown - (now - last_time)
@@ -88,7 +91,7 @@ total = player["hits"] + player["misses"]
 player["accuracy"] = round(player["hits"] / total, 2) if total else 0.0
 player["last_move"] = now.isoformat()
 player["username"] = username
-leaderboard[user_id] = player
+leaderboard[user_key] = player
 
 with open(leaderboard_path, "w") as f:
     json.dump(leaderboard, f, indent=2)
@@ -132,7 +135,7 @@ def render_leaderboard(leaderboard):
     )
 
     for i, (uid, stats) in enumerate(sorted_players, start=1):
-        player_name = stats.get("username", f"user-{uid}")
+        player_name = stats.get("username", uid)
         rank = ["🥇", "🥈", "🥉"][i - 1] if i <= 3 else str(i)
         avatar_url = f"https://github.com/{player_name}.png"
         avatar_md = f"<img src='{avatar_url}' width='32' height='32'>"
