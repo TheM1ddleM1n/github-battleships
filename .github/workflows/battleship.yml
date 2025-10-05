@@ -17,9 +17,11 @@ jobs:
       SHIPS_JSON: ${{ secrets.SHIPS_JSON }}
       GITHUB_ACTOR_ID: ${{ github.event.issue.user.id }}
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
@@ -40,6 +42,7 @@ jobs:
         run: |
           git config --global user.name 'Battleship Bot'
           git config --global user.email 'bot@example.com'
+          echo "Update README with latest move" > commit_message.txt
           git add README.md
           COMMIT_MSG=$(cat commit_message.txt)
           git commit -m "$COMMIT_MSG"
