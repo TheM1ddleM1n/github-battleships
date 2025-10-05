@@ -1,0 +1,85 @@
+name: Manual Game Reset
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  manual-reset:
+    if: contains(github.event.issue.title, 'Reset Game') || contains(github.event.issue.body, 'Reset Game')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install PyGithub
+
+      - name: Check if user is admin/owner
+        id: check_permission
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_USER: ${{ github.event.issue.user.login }}
+        run: |
+          python - <<EOF
+          import os
+          from github import Github
+          
+          GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+          REPO_NAME = os.getenv("GITHUB_REPOSITORY")
+          ISSUE_NUMBER = int(os.getenv("ISSUE_NUMBER"))
+          ISSUE_USER = os.getenv("ISSUE_USER")
+          
+          g = Github(GITHUB_TOKEN)
+          repo = g.get_repo(REPO_NAME)
+          issue = repo.get_issue(number=ISSUE_NUMBER)
+          
+          # Check if user has admin or write permissions
+          try:
+              permission = repo.get_collaborator_permission(ISSUE_USER)
+              if permission in ["admin", "write"]:
+                  print("AUTHORIZED=true")
+                  issue.create_comment(f"✅ Authorization confirmed. Initiating game reset by @{ISSUE_USER}...")
+              else:
+                  print("AUTHORIZED=false")
+                  issue.create_comment(f"❌ Sorry @{ISSUE_USER}, only repository admins can reset the game.")
+                  exit(1)
+          except:
+              # Fallback: check if user is repo owner
+              if ISSUE_USER == repo.owner.login:
+                  print("AUTHORIZED=true")
+                  issue.create_comment(f"✅ Authorization confirmed. Initiating game reset by @{ISSUE_USER}...")
+              else:
+                  print("AUTHORIZED=false")
+                  issue.create_comment(f"❌ Sorry @{ISSUE_USER}, only repository admins can reset the game.")
+                  exit(1)
+          EOF
+
+      - name: Run manual reset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: python scripts/manual_reset.py
+
+      - name: Commit reset
+        run: |
+          git config --global user.name 'Battleship Bot'
+          git config --global user.email 'bot@example.com'
+          git add README.md
+          git add game2/leaderboard.json
+          git add game2/move_history.json
+          git add game/board.json
+          git diff --staged --quiet || git commit -m "🔄 Manual game reset by admin"
+          git push
