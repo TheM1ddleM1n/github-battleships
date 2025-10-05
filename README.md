@@ -34,10 +34,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 <!-- LEADERBOARD_START -->
 | Rank | Player | 🖼️ Avatar | 🏹 Hits | 💦 Misses | 🎯 Accuracy | 🔥 Streak |
 |------|--------|-----------|----------|------------|--------------|------------|
-| 🥇 | @user-TheM1ddleM1n | <img src='https://github.com/user-TheM1ddleM1n.png' width='32' height='32'> | 4 | 3 | 0.57 | 0 |
-| 🥈 | @user-DataM0del | <img src='https://github.com/user-DataM0del.png' width='32' height='32'> | 1 | 0 | 1.0 | 1 |
-| 🥉 | @user-DataModdel | <img src='https://github.com/user-DataModdel.png' width='32' height='32'> | 1 | 0 | 1.0 | 1 |
-| 4 | @user-192749026 | <img src='https://github.com/user-192749026.png' width='32' height='32'> | 0 | 1 | 0.0 | 0 |
+| 🥇 | @user-192749026 | <img src='https://github.com/user-192749026.png' width='32' height='32'> | 0 | 1 | 0.0 | 0 |
 <!-- LEADERBOARD_END -->
 
 
@@ -66,11 +63,11 @@ Ready to fire your first shot?
 <!-- BOARD_START -->
 |   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| A | X | X | X | X | X |   |   |   |   | O |
+| A | X | X | X | X | X |   | O |   |   | O |
 | B |   |   |   | O |   |   |   |   |   |   |
 | C |   |   |   |   |   |   |   |   |   |   |
 | D |   |   |   |   |   | O |   |   |   | O |
-| E |   |   | X |   |   |   | O |   |   |   |
+| E |   |   | X |   |   |   |   |   |   |   |
 | F |   |   |   |   |   |   |   |   |   |   |
 | G |   |   |   |   |   |   |   |   |   |   |
 | H |   |   |   |   |   |   |   |   |   |   |
