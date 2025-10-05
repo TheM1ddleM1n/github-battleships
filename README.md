@@ -16,6 +16,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 - Check if your move is valid
 - Update the game board
 - Reply to your issue with the result: `Hit!`, `Miss!`, or `Already Played`
+- Dual move format support (/move B4 and Move: B4)
 
 ---
 
