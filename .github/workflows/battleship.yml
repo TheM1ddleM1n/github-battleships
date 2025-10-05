@@ -40,9 +40,12 @@ jobs:
 
       - name: Commit README update
         run: |
-          git config --global user.name 'Battleship Bot'
-          git config --global user.email 'bot@example.com'
-          git add README.md
-          COMMIT_MSG=$(cat commit_message.txt)
-          git commit -m "$COMMIT_MSG"
-          git push
+         git config --global user.name 'Battleship Bot'
+         git config --global user.email 'bot@example.com'
+         # Fallback message if commit_message.txt is missing
+         echo "README updated with latest move." > fallback.txt
+         COMMIT_MSG=$(cat commit_message.txt 2>/dev/null || cat fallback.txt)
+         git add README.md
+         git commit -m "$COMMIT_MSG"
+         git push
+
