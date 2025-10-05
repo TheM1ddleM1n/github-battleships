@@ -6,5 +6,13 @@
     "streak": 0,
     "accuracy": 0.5,
     "last_move": "2025-10-05T15:30:00Z"
+  },
+  "192749026": {
+    "hits": 0,
+    "misses": 1,
+    "streak": 0,
+    "username": "TheM1ddleM1n",
+    "accuracy": 0.0,
+    "last_move": "2025-10-05T15:52:03.430500"
   }
 }
