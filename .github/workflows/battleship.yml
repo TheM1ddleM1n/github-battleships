@@ -38,7 +38,7 @@ jobs:
           GITHUB_ACTOR_ID: ${{ github.event.issue.user.id }}
         run: python scripts/process_move.py
 
-      - name: Commit README update
+      - name: Commit README and leaderboard update
         run: |
          git config --global user.name 'Battleship Bot'
          git config --global user.email 'bot@example.com'
@@ -46,6 +46,6 @@ jobs:
          echo "README updated with latest move." > fallback.txt
          COMMIT_MSG=$(cat commit_message.txt 2>/dev/null || cat fallback.txt)
          git add README.md
+         git add game2/leaderboard.json
          git commit -m "$COMMIT_MSG"
          git push
-
