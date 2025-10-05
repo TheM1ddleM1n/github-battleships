@@ -30,7 +30,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 
 ---
 
-## 🏅 Leaderboard (BROKEN AS OF NOW)
+## 🏅 Leaderboard!
 
 <!-- LEADERBOARD_START -->
 | Rank | Player | 🖼️ Avatar | 🏹 Hits | 💦 Misses | 🎯 Accuracy | 🔥 Streak |
