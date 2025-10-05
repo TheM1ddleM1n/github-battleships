@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   process-move:
-    if: startsWith(github.event.issue.title, 'Move:')
+    if: startsWith(github.event.issue.title, 'Move:') || contains(github.event.issue.body, '/move')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -22,6 +22,12 @@ jobs:
       - name: Install dependencies
         run: pip install PyGithub
 
+      - name: Download game state artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: game-state
+          path: game
+
       - name: Run move processor
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -29,15 +35,23 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: python scripts/process_move.py
 
-      - name: Commit move result
+      - name: Commit README update
         run: |
-         git config --global user.name 'Battleship Bot'
-         git config --global user.email 'bot@example.com'
-         COMMIT_MSG=$(cat commit_message.txt)
-         git add game/board.json game/leaderboard.json README.md
-         git commit -m "$COMMIT_MSG"
-         git push
+          git config --global user.name 'Battleship Bot'
+          git config --global user.email 'bot@example.com'
+          git add README.md
+          COMMIT_MSG=$(cat commit_message.txt)
+          git commit -m "$COMMIT_MSG"
+          git push
 
+      - name: Upload updated game state
+        uses: actions/upload-artifact@v3
+        with:
+          name: game-state
+          path: |
+            game/board.json
+            game/ships.json
+            game/leaderboard.json
 
   reset-game:
     if: github.event.issue.title == 'Reset Game'
@@ -52,6 +66,12 @@ jobs:
       - name: Install dependencies
         run: pip install PyGithub
 
+      - name: Download game state artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: game-state
+          path: game
+
       - name: Run reset script
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -59,10 +79,19 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: python scripts/reset_game.py
 
-      - name: Commit reset
+      - name: Commit README and round archive
         run: |
           git config --global user.name 'Battleship Bot'
           git config --global user.email 'bot@example.com'
-          git add game/board.json game/ships.json game/leaderboard.json README.md rounds/
+          git add README.md rounds/
           git commit -m "🔄 Game reset and round archived"
           git push
+
+      - name: Upload fresh game state
+        uses: actions/upload-artifact@v3
+        with:
+          name: game-state
+          path: |
+            game/board.json
+            game/ships.json
+            game/leaderboard.json
