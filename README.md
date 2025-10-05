@@ -40,13 +40,13 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 | A | 💥 | 💥 | 💥 | 💥 | 💥 | ⬜ | ⬜ | ⬜ | ⬜ | 🌊 |
 | B | ⬜ | ⬜ | ⬜ | 🌊 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | C | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| D | ⬜ | ⬜ | 🌊 | ⬜ | ⬜ | 🌊 | ⬜ | ⬜ | ⬜ | 🌊 |
+| D | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | 🌊 | ⬜ | ⬜ | ⬜ | 🌊 |
 | E | ⬜ | ⬜ | 💥 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | F | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | G | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | H | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | I | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| J | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | 💥 |
+| J | ⬜ | ⬜ | ⬜ | 🌊 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | 💥 |
 <!-- BOARD_END -->
 
 ---
@@ -79,6 +79,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 <!-- HISTORY_MOVES_START -->
 ### 📜 Recent Moves
 
+- 🌊 @TheM1ddleM1n: `J4` - Miss
 - 🌊 @TheM1ddleM1n: `D3` - Miss
 <!-- HISTORY_MOVES_END -->
 
@@ -89,7 +90,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 <!-- LEADERBOARD_START -->
 | Rank | Player | 🖼️ Avatar | 🏹 Hits | 💦 Misses | 🎯 Accuracy | 🔥 Streak | 🚢 Sunk |
 |------|--------|-----------|----------|------------|--------------|------------|----------|
-| 🥇 | @TheM1ddleM1n | <img src='https://github.com/TheM1ddleM1n.png' width='32' height='32'> | 0 | 3 | 0.0 | 0 | 0 |
+| 🥇 | @TheM1ddleM1n | <img src='https://github.com/TheM1ddleM1n.png' width='32' height='32'> | 0 | 4 | 0.0 | 0 | 0 |
 <!-- LEADERBOARD_END -->
 
 ---
