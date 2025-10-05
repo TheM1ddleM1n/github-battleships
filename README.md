@@ -8,15 +8,16 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 
 ## How to Play github-battleships?
 
-1. **Open a new issue** with your move in the title: `Move: B4`
+1. **Open a new issue** with your move in the title: `Move: B4` or `/move B4`
 
-*(Only one move per issue, please! 2nd thing THIS IS IMPORTANT - please DO NOT SPAM B4 B5 B6 B7... etc)*
+*(Only one move per issue, please! DO NOT SPAM consecutive cells like B4, B5, B6...)*
 
 2. The bot will:
 - Check if your move is valid
 - Update the game board
 - Reply to your issue with the result: `Hit!`, `Miss!`, or `Already Played`
-- Dual move format support (/move B4 and Move: B4)
+- Award achievements for milestones
+- Track your stats
 
 ---
 
@@ -24,57 +25,112 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 
 - The board is 10x10 (A–J rows, 1–10 columns)
 - Ships are hidden — you won't know their locations!
-- Hits are marked with `"X"`, misses with `"O"`
-- First player to sink all ships wins eternal glory (and maybe a badge 👑)
-- WHEN THE GAME IS COMPLETED please make a issue with the comment `Reset Game`
+- Hits are marked with `💥`, misses with `🌊`
+- First player to sink all ships wins eternal glory 👑
+- 2-hour cooldown between moves (reduced for active players!)
+- Strategic patterns may be detected - mix up your strategy!
 
 ---
-
-## 🏅 Leaderboard!
-
-<!-- LEADERBOARD_START -->
-| Rank | Player | 🖼️ Avatar | 🏹 Hits | 💦 Misses | 🎯 Accuracy | 🔥 Streak |
-|------|--------|-----------|----------|------------|--------------|------------|
-| 🥇 | @TheM1ddleM1n | <img src='https://github.com/TheM1ddleM1n.png' width='32' height='32'> | 0 | 2 | 0.0 | 0 |
-<!-- LEADERBOARD_END -->
-
-
----
-
-## Powered By
-
-- GitHub Actions
-- Github Secrets
-- Python based game logic
-- JSON-based board state
-- Your brilliant moves ofc!
-
----
-
-## 💬 Any Questions, Bugs or Ideas?
-
-Open an issue titled `Suggestion:` or `Question:` and let’s make this game even better!
-
----
-
-Thanks @DataM0del for opening the first issue! (Bug)
-
-Ready to fire your first shot? 
-**Open an issue and type your move now!** 🎯
 
 ## 🎯 Current Game Board
 
 <!-- BOARD_START -->
 |   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| A | X | X | X | X | X |   |   |   |   | O |
-| B |   |   |   | O |   |   |   |   |   |   |
-| C |   |   |   |   |   |   |   |   |   |   |
-| D |   |   |   |   |   | O |   |   |   | O |
-| E |   |   | X |   |   |   |   |   |   |   |
-| F |   |   |   |   |   |   |   |   |   |   |
-| G |   |   |   |   |   |   |   |   |   |   |
-| H |   |   |   | O |   |   |   |   |   |   |
-| I |   |   |   |   |   |   |   |   |   |   |
-| J |   |   |   |   |   |   |   |   |   | X |
+| A | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| B | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| C | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| D | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| E | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| F | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| G | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| H | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| I | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| J | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 <!-- BOARD_END -->
+
+---
+
+<!-- SHIP_STATUS_START -->
+### 🚢 Fleet Status
+
+- 🛳️ **CARRIER** (5 cells): ✅ Afloat
+- ⚓ **BATTLESHIP** (4 cells): ✅ Afloat
+- 🔱 **SUBMARINE** (3 cells): ✅ Afloat
+- ⛴️ **DESTROYER** (2 cells): ✅ Afloat
+- 🛥️ **PATROL** (2 cells): ✅ Afloat
+<!-- SHIP_STATUS_END -->
+
+---
+
+<!-- GAME_STATS_START -->
+### 📊 Game Statistics
+
+- 🎯 **Ship Cells Remaining:** 16/16
+- 🎲 **Total Moves:** 0
+- 💥 **Total Hits:** 0
+- 🌊 **Total Misses:** 0
+- 📈 **Community Accuracy:** 0.0%
+- 👥 **Active Players:** 0
+<!-- GAME_STATS_END -->
+
+---
+
+<!-- HISTORY_MOVES_START -->
+### 📜 Recent Moves
+
+*No moves yet! Be the first to fire!*
+<!-- HISTORY_MOVES_END -->
+
+---
+
+## 🏅 Current Game Leaderboard
+
+<!-- LEADERBOARD_START -->
+| Rank | Player | 🖼️ Avatar | 🏹 Hits | 💦 Misses | 🎯 Accuracy | 🔥 Streak | 🚢 Sunk |
+|------|--------|-----------|----------|------------|--------------|------------|----------|
+| - | *No players yet* | - | - | - | - | - | - |
+<!-- LEADERBOARD_END -->
+
+---
+
+## 👑 All-Time Leaderboard
+
+<!-- ALL_TIME_START -->
+| Rank | Player | 🏹 Total Hits | 🏆 Wins | 🎮 Games | 🔥 Best Streak | 🚢 Ships Sunk |
+|------|--------|---------------|---------|----------|----------------|----------------|
+| - | *No players yet* | - | - | - | - | - |
+<!-- ALL_TIME_END -->
+
+---
+
+## 🏆 Achievements
+
+Unlock badges by hitting milestones!
+
+- 🎯 **Sharpshooter** - 80%+ accuracy with 10+ moves
+- 🔥 **Hot Streak** - 5 hits in a row
+- ⚡ **First Blood** - Get the first hit of the game
+- 🚢 **Ship Sinker** - Sink your first ship
+- 💀 **Fleet Destroyer** - Sink 3 or more ships
+- 🏆 **Victory Royale** - Win a game
+
+---
+
+## Powered By
+
+- GitHub Actions & Secrets
+- Python-based game logic
+- JSON-based state management
+- Your brilliant moves!
+
+---
+
+## 💬 Any Questions, Bugs or Ideas?
+
+Open an issue titled `Suggestion:` or `Question:` and let's make this game even better!
+
+---
+
+Ready to fire your first shot? 
+**Open an issue and type your move now!** 🎯
