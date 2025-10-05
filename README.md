@@ -34,9 +34,10 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 <!-- LEADERBOARD_START -->
 | Rank | Player | 🖼️ Avatar | 🏹 Hits | 💦 Misses | 🎯 Accuracy | 🔥 Streak |
 |------|--------|-----------|----------|------------|--------------|------------|
-| 🥇 | @TheM1ddleM1n | <img src='https://github.com/TheM1ddleM1n.png' width='32' height='32'> | 4 | 3 | 0.57 | 0 |
-| 🥈 | @DataM0del | <img src='https://github.com/DataM0del.png' width='32' height='32'> | 1 | 0 | 1.0 | 1 |
-| 🥉 | @DataModdel | <img src='https://github.com/DataModdel.png' width='32' height='32'> | 1 | 0 | 1.0 | 1 |
+| 🥇 | @user-TheM1ddleM1n | <img src='https://github.com/user-TheM1ddleM1n.png' width='32' height='32'> | 4 | 3 | 0.57 | 0 |
+| 🥈 | @user-DataM0del | <img src='https://github.com/user-DataM0del.png' width='32' height='32'> | 1 | 0 | 1.0 | 1 |
+| 🥉 | @user-DataModdel | <img src='https://github.com/user-DataModdel.png' width='32' height='32'> | 1 | 0 | 1.0 | 1 |
+| 4 | @user-192749026 | <img src='https://github.com/user-192749026.png' width='32' height='32'> | 0 | 1 | 0.0 | 0 |
 <!-- LEADERBOARD_END -->
 
 
@@ -69,7 +70,7 @@ Ready to fire your first shot?
 | B |   |   |   | O |   |   |   |   |   |   |
 | C |   |   |   |   |   |   |   |   |   |   |
 | D |   |   |   |   |   | O |   |   |   | O |
-| E |   |   | X |   |   |   |   |   |   |   |
+| E |   |   | X |   |   |   | O |   |   |   |
 | F |   |   |   |   |   |   |   |   |   |   |
 | G |   |   |   |   |   |   |   |   |   |   |
 | H |   |   |   |   |   |   |   |   |   |   |
