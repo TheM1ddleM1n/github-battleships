@@ -11,17 +11,7 @@ from collections import Counter
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 REPO_NAME = os.getenv("GITHUB_REPOSITORY")
 ISSUE_NUMBER = int(os.getenv("ISSUE_NUMBER"))
-BOARD_JSON = os.getenv("BOARD_JSON", "{}")
-SHIPS_JSON = os.getenv("SHIPS_JSON", "{}")
 user_id = os.getenv("GITHUB_ACTOR_ID")
-
-# Validate secrets exist
-if not BOARD_JSON or BOARD_JSON == "{}":
-    print("ERROR: BOARD_JSON secret not found or empty!")
-    exit(1)
-if not SHIPS_JSON or SHIPS_JSON == "{}":
-    print("ERROR: SHIPS_JSON secret not found or empty!")
-    exit(1)
 
 # Connect to GitHub using new auth method
 auth = Auth.Token(GITHUB_TOKEN)
@@ -42,12 +32,26 @@ if not match:
 
 move = match.group(1).upper()
 
-# Load board and ships
-board = json.loads(BOARD_JSON)
-ships = json.loads(SHIPS_JSON)
+# Create directories if they don't exist
+os.makedirs("game", exist_ok=True)
+os.makedirs("game2", exist_ok=True)
+
+# Load board and ships from FILES, not secrets
+try:
+    with open("game/board.json", "r") as f:
+        board = json.load(f)
+except FileNotFoundError:
+    issue.create_comment("❌ ERROR: Board file not found! Please run manual reset first.")
+    exit(1)
+
+try:
+    with open("game/ships.json", "r") as f:
+        ships = json.load(f)
+except FileNotFoundError:
+    issue.create_comment("❌ ERROR: Ships file not found! Please run manual reset first.")
+    exit(1)
 
 # Load leaderboard
-os.makedirs("game2", exist_ok=True)
 leaderboard_path = "game2/leaderboard.json"
 all_time_path = "game2/all_time_leaderboard.json"
 move_history_path = "game2/move_history.json"
@@ -252,7 +256,9 @@ if player.get("ships_sunk", 0) >= 3 and "💀 Fleet Destroyer" not in user_achie
 
 achievements[user_key] = user_achievements
 
-# Save all data
+# Save all data INCLUDING BOARD
+with open("game/board.json", "w") as f:
+    json.dump(board, f, indent=2)
 with open(leaderboard_path, "w") as f:
     json.dump(leaderboard, f, indent=2)
 with open(all_time_path, "w") as f:
