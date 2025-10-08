@@ -26,5 +26,12 @@
     "result": "Miss",
     "ship": null,
     "timestamp": "2025-10-05T20:35:05.776581"
+  },
+  {
+    "username": "TheM1ddleM1n",
+    "move": "G4",
+    "result": "Hit",
+    "ship": "destroyer",
+    "timestamp": "2025-10-08T19:05:36.871244"
   }
 ]
