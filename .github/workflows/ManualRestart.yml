@@ -34,14 +34,15 @@ jobs:
         run: |
           python - <<EOF
           import os
-          from github import Github
+          from github import Github, Auth
           
           GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
           REPO_NAME = os.getenv("GITHUB_REPOSITORY")
           ISSUE_NUMBER = int(os.getenv("ISSUE_NUMBER"))
           ISSUE_USER = os.getenv("ISSUE_USER")
           
-          g = Github(GITHUB_TOKEN)
+          auth = Auth.Token(GITHUB_TOKEN)
+          g = Github(auth=auth)
           repo = g.get_repo(REPO_NAME)
           issue = repo.get_issue(number=ISSUE_NUMBER)
           
