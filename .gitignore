@@ -1,3 +1,7 @@
-game/
 commit_message.txt
+game/ships.json
+!game/board.json
 !game2/leaderboard.json
+!game2/all_time_leaderboard.json
+!game2/move_history.json
+!game2/achievements.json
