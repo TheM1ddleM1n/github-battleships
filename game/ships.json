@@ -1,0 +1,18 @@
+{
+  "B5": "carrier",
+  "B6": "carrier",
+  "B7": "carrier",
+  "B8": "carrier",
+  "B9": "carrier",
+  "F7": "battleship",
+  "G7": "battleship",
+  "H7": "battleship",
+  "I7": "battleship",
+  "F3": "submarine",
+  "F4": "submarine",
+  "F5": "submarine",
+  "E6": "destroyer",
+  "F6": "destroyer",
+  "C5": "patrol",
+  "D5": "patrol"
+}
