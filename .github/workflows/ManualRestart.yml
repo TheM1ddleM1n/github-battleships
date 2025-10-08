@@ -79,8 +79,11 @@ jobs:
           git config --global user.name 'Battleship Bot'
           git config --global user.email 'bot@example.com'
           git add README.md
+          git add game/board.json
+          git add game/ships.json
           git add game2/leaderboard.json
           git add game2/move_history.json
-          git add game/board.json
+          git add game2/all_time_leaderboard.json
+          git add game2/achievements.json
           git diff --staged --quiet || git commit -m "🔄 Manual game reset by admin"
           git push
