@@ -7,7 +7,7 @@ from datetime import datetime, timedelta, UTC
 from github import Github, Auth
 from collections import Counter
 
-# Load environment variables!
+# Load environment variables
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 REPO_NAME = os.getenv("GITHUB_REPOSITORY")
 ISSUE_NUMBER = int(os.getenv("ISSUE_NUMBER"))
@@ -41,14 +41,19 @@ try:
     with open("game/board.json", "r") as f:
         board = json.load(f)
 except FileNotFoundError:
-    issue.create_comment("❌ ERROR: Board file not found! Please run manual reset first.")
+    issue.create_comment("❌ ERROR: Board file not found! Creating a new game - please run `Reset Game` first to properly initialize.")
     exit(1)
 
 try:
     with open("game/ships.json", "r") as f:
         ships = json.load(f)
 except FileNotFoundError:
-    issue.create_comment("❌ ERROR: Ships file not found! Please run manual reset first.")
+    # Ships file doesn't exist - need to initialize
+    issue.create_comment(
+        "❌ ERROR: Ships file not found! The game needs to be initialized.\n\n"
+        "**To fix this, create an issue titled:** `Reset Game`\n\n"
+        "This will generate ship positions and set up the game properly."
+    )
     exit(1)
 
 # Load leaderboard
