@@ -17,7 +17,6 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 - Update the game board
 - Reply to your issue with the result: `Hit!`, `Miss!`, or `Already Played`
 - Award achievements for milestones
-- Track your stats
 
 ---
 
@@ -27,8 +26,10 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 - Ships are hidden — you won't know their locations!
 - Hits are marked with `💥`, misses with `🌊`
 - First player to sink all ships wins eternal glory 👑
-- 2-hour cooldown between moves (reduced for active players!)
+- 2-hour cooldown between moves (reduced for active players! sorry lol!)
 - Strategic patterns may be detected - mix up your strategy!
+- `Only Owner is allowed to have no cooldown (so he can test some new updates) :D`
+- Track your stats! (on the all time or game leaderboard!)
 
 ---
 
@@ -132,5 +133,5 @@ Open an issue titled `Suggestion:` or `Question:` and let's make this game even 
 
 ---
 
-Ready to fire your first shot? 
+Ready to fire your first shot?
 **Open an issue and type your move now!** 🎯
