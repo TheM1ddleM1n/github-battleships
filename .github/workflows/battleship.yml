@@ -12,10 +12,6 @@ jobs:
   process-move:
     if: startsWith(github.event.issue.title, 'Move:') || startsWith(github.event.issue.title, '/move') || contains(github.event.issue.body, '/move')
     runs-on: ubuntu-latest
-    env:
-      BOARD_JSON: ${{ secrets.BOARD_JSON }}
-      SHIPS_JSON: ${{ secrets.SHIPS_JSON }}
-      GITHUB_ACTOR_ID: ${{ github.event.issue.user.id }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -33,8 +29,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
-          BOARD_JSON: ${{ secrets.BOARD_JSON }}
-          SHIPS_JSON: ${{ secrets.SHIPS_JSON }}
           GITHUB_ACTOR_ID: ${{ github.event.issue.user.login }}
         run: python scripts/process_move.py
 
@@ -46,6 +40,7 @@ jobs:
          echo "README updated with latest move." > fallback.txt
          COMMIT_MSG=$(cat commit_message.txt 2>/dev/null || cat fallback.txt)
          git add README.md
+         git add game/board.json
          git add game2/leaderboard.json
          git add game2/all_time_leaderboard.json
          git add game2/move_history.json
