@@ -69,7 +69,7 @@ for player_key in leaderboard.keys():
         all_time_lb[player_key]["games_played"] = all_time_lb[player_key].get("games_played", 0) + 1
 
 # Archive round
-timestamp = datetime.datetime.utcnow().isoformat()
+timestamp = datetime.datetime.now(datetime.UTC).isoformat()
 round_data = {
     "timestamp": timestamp,
     "winner": winner_name,
@@ -204,7 +204,8 @@ with open("README.md", "w") as f:
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 REPO_NAME = os.getenv("GITHUB_REPOSITORY")
 ISSUE_NUMBER = int(os.getenv("ISSUE_NUMBER"))
-g = Github(GITHUB_TOKEN)
+auth = Auth.Token(GITHUB_TOKEN)
+g = Github(auth=auth)
 repo = g.get_repo(REPO_NAME)
 issue = repo.get_issue(number=ISSUE_NUMBER)
 
