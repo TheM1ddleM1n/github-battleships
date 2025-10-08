@@ -3,8 +3,8 @@ import json
 import re
 import time
 import subprocess
-from datetime import datetime, timedelta
-from github import Github
+from datetime import datetime, timedelta, UTC
+from github import Github, Auth
 from collections import Counter
 
 # Load environment variables
@@ -23,8 +23,9 @@ if not SHIPS_JSON or SHIPS_JSON == "{}":
     print("ERROR: SHIPS_JSON secret not found or empty!")
     exit(1)
 
-# Connect to GitHub
-g = Github(GITHUB_TOKEN)
+# Connect to GitHub using new auth method
+auth = Auth.Token(GITHUB_TOKEN)
+g = Github(auth=auth)
 repo = g.get_repo(REPO_NAME)
 issue = repo.get_issue(number=ISSUE_NUMBER)
 username = issue.user.login
@@ -128,7 +129,7 @@ if len(recent_moves) >= 5:
         issue.create_comment("⚠️ **Pattern detected!** Systematic grid searching may be less fun for everyone. Try mixing up your strategy! 🎲")
 
 # Cooldown check (Improved #11)
-now = datetime.utcnow()
+now = datetime.now(UTC)
 last_time_str = player.get("last_move")
 
 cooldown_hours = 2
@@ -139,7 +140,18 @@ if player["hits"] + player["misses"] > 50:
     cooldown_hours = 1
 
 if username != "TheM1ddleM1n" and last_time_str:
-    last_time = datetime.fromisoformat(last_time_str)
+    try:
+        # Handle both timezone-aware and naive datetimes
+        if last_time_str.endswith('Z'):
+            last_time_str = last_time_str.replace('Z', '+00:00')
+        last_time = datetime.fromisoformat(last_time_str)
+        if last_time.tzinfo is None:
+            # If naive, assume UTC
+            last_time = last_time.replace(tzinfo=UTC)
+    except ValueError:
+        # Fallback for old format
+        last_time = datetime.fromisoformat(last_time_str).replace(tzinfo=UTC)
+    
     cooldown = timedelta(hours=cooldown_hours)
     remaining = cooldown - (now - last_time)
     if remaining.total_seconds() > 0:
@@ -196,6 +208,11 @@ total = player["hits"] + player["misses"]
 player["accuracy"] = round(player["hits"] / total, 2) if total else 0.0
 player["last_move"] = now.isoformat()
 player["username"] = username
+
+# Ensure ships_sunk exists
+if "ships_sunk" not in player:
+    player["ships_sunk"] = 0
+
 leaderboard[user_key] = player
 all_time_lb[user_key] = all_time_player
 
@@ -225,11 +242,11 @@ if player["hits"] == 1 and player["misses"] == 0 and "⚡ First Blood" not in us
     new_badges.append("⚡ First Blood")
     user_achievements["badges"].append("⚡ First Blood")
 
-if player["ships_sunk"] >= 1 and "🚢 Ship Sinker" not in user_achievements["badges"]:
+if player.get("ships_sunk", 0) >= 1 and "🚢 Ship Sinker" not in user_achievements["badges"]:
     new_badges.append("🚢 Ship Sinker")
     user_achievements["badges"].append("🚢 Ship Sinker")
 
-if player["ships_sunk"] >= 3 and "💀 Fleet Destroyer" not in user_achievements["badges"]:
+if player.get("ships_sunk", 0) >= 3 and "💀 Fleet Destroyer" not in user_achievements["badges"]:
     new_badges.append("💀 Fleet Destroyer")
     user_achievements["badges"].append("💀 Fleet Destroyer")
 
@@ -357,6 +374,10 @@ def render_ship_status(ships, board):
 # Render move history (#2)
 def render_move_history(history):
     history_text = "### 📜 Recent Moves\n\n"
+    
+    if not history:
+        return history_text + "*No moves yet! Be the first to fire!*\n"
+    
     recent = history[-10:][::-1]  # Last 10, reversed
     
     for entry in recent:
@@ -394,7 +415,7 @@ def render_leaderboard(leaderboard):
 
     sorted_players = sorted(
         leaderboard.items(),
-        key=lambda x: (x[1]["hits"], x[1]["accuracy"], x[1]["ships_sunk"]),
+        key=lambda x: (x[1]["hits"], x[1]["accuracy"], x[1].get("ships_sunk", 0)),
         reverse=True
     )
 
