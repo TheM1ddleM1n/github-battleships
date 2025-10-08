@@ -43,7 +43,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 | D | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | 🌊 | ⬜ | ⬜ | ⬜ | 🌊 |
 | E | ⬜ | ⬜ | 💥 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | F | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| G | ⬜ | ⬜ | ⬜ | ⬜ | 🌊 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| G | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | 💥 | ⬜ | ⬜ |
 | H | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | I | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | J | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | 💥 |
@@ -55,7 +55,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 ### 🚢 Fleet Status
 
 - 🛳️ **CARRIER** (5 cells): ✅ Afloat
-- ⚓ **BATTLESHIP** (4 cells): ✅ Afloat
+- ⚓ **BATTLESHIP** (4 cells): 🔥 **1/4** damaged
 - 🔱 **SUBMARINE** (3 cells): ✅ Afloat
 - ⛴️ **DESTROYER** (2 cells): ✅ Afloat
 - 🛥️ **PATROL** (2 cells): ✅ Afloat
@@ -66,11 +66,11 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 <!-- GAME_STATS_START -->
 ### 📊 Game Statistics
 
-- 🎯 **Ship Cells Remaining:** 9/16
+- 🎯 **Ship Cells Remaining:** 8/16
 - 🎲 **Total Moves:** 12
-- 💥 **Total Hits:** 7
-- 🌊 **Total Misses:** 5
-- 📈 **Community Accuracy:** 58.3%
+- 💥 **Total Hits:** 8
+- 🌊 **Total Misses:** 4
+- 📈 **Community Accuracy:** 66.7%
 - 👥 **Active Players:** 1
 <!-- GAME_STATS_END -->
 
@@ -79,6 +79,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 <!-- HISTORY_MOVES_START -->
 ### 📜 Recent Moves
 
+- 💥 @TheM1ddleM1n: `G8` - Hit (battleship)
 - 🌊 @TheM1ddleM1n: `G5` - Miss
 - 💥 @TheM1ddleM1n: `G4` - Hit (destroyer)
 - 🌊 @TheM1ddleM1n: `E5` - Miss
@@ -94,7 +95,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 <!-- LEADERBOARD_START -->
 | Rank | Player | 🖼️ Avatar | 🏹 Hits | 💦 Misses | 🎯 Accuracy | 🔥 Streak | 🚢 Sunk |
 |------|--------|-----------|----------|------------|--------------|------------|----------|
-| 🥇 | @TheM1ddleM1n | <img src='https://github.com/TheM1ddleM1n.png' width='32' height='32'> | 1 | 7 | 0.12 | 0 | 0 |
+| 🥇 | @TheM1ddleM1n | <img src='https://github.com/TheM1ddleM1n.png' width='32' height='32'> | 2 | 7 | 0.22 | 1 | 0 |
 <!-- LEADERBOARD_END -->
 
 ---
@@ -104,7 +105,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 <!-- ALL_TIME_START -->
 | Rank | Player | 🏹 Total Hits | 🏆 Wins | 🎮 Games | 🔥 Best Streak | 🚢 Ships Sunk |
 |------|--------|---------------|---------|----------|----------------|----------------|
-| 👑 | @TheM1ddleM1n | 1 | 0 | 0 | 1 | 0 |
+| 👑 | @TheM1ddleM1n | 2 | 0 | 0 | 1 | 0 |
 <!-- ALL_TIME_END -->
 
 ---
