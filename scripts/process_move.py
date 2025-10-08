@@ -7,7 +7,7 @@ from datetime import datetime, timedelta, UTC
 from github import Github, Auth
 from collections import Counter
 
-# Load environment variables
+# Load environment variables!
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 REPO_NAME = os.getenv("GITHUB_REPOSITORY")
 ISSUE_NUMBER = int(os.getenv("ISSUE_NUMBER"))
