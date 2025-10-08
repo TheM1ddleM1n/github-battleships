@@ -37,16 +37,16 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 <!-- BOARD_START -->
 |   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| A | 💥 | 💥 | 💥 | 💥 | 💥 | ⬜ | ⬜ | ⬜ | ⬜ | 🌊 |
-| B | ⬜ | ⬜ | ⬜ | 🌊 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| A | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| B | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | C | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| D | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | 🌊 | ⬜ | ⬜ | ⬜ | 🌊 |
-| E | ⬜ | ⬜ | 💥 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| D | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| E | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | F | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| G | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | 💥 | ⬜ | ⬜ |
+| G | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | H | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | I | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| J | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | 💥 |
+| J | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 <!-- BOARD_END -->
 
 ---
@@ -55,7 +55,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 ### 🚢 Fleet Status
 
 - 🛳️ **CARRIER** (5 cells): ✅ Afloat
-- ⚓ **BATTLESHIP** (4 cells): 🔥 **1/4** damaged
+- ⚓ **BATTLESHIP** (4 cells): ✅ Afloat
 - 🔱 **SUBMARINE** (3 cells): ✅ Afloat
 - ⛴️ **DESTROYER** (2 cells): ✅ Afloat
 - 🛥️ **PATROL** (2 cells): ✅ Afloat
@@ -66,12 +66,12 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 <!-- GAME_STATS_START -->
 ### 📊 Game Statistics
 
-- 🎯 **Ship Cells Remaining:** 8/16
-- 🎲 **Total Moves:** 12
-- 💥 **Total Hits:** 8
-- 🌊 **Total Misses:** 4
-- 📈 **Community Accuracy:** 66.7%
-- 👥 **Active Players:** 1
+- 🎯 **Ship Cells Remaining:** 16/16
+- 🎲 **Total Moves:** 0
+- 💥 **Total Hits:** 0
+- 🌊 **Total Misses:** 0
+- 📈 **Community Accuracy:** 0.0%
+- 👥 **Active Players:** 0
 <!-- GAME_STATS_END -->
 
 ---
@@ -79,13 +79,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 <!-- HISTORY_MOVES_START -->
 ### 📜 Recent Moves
 
-- 💥 @TheM1ddleM1n: `G8` - Hit (battleship)
-- 🌊 @TheM1ddleM1n: `G5` - Miss
-- 💥 @TheM1ddleM1n: `G4` - Hit (destroyer)
-- 🌊 @TheM1ddleM1n: `E5` - Miss
-- 🌊 @TheM1ddleM1n: `J1` - Miss
-- 🌊 @TheM1ddleM1n: `J4` - Miss
-- 🌊 @TheM1ddleM1n: `D3` - Miss
+*No moves yet! Be the first to fire!*
 <!-- HISTORY_MOVES_END -->
 
 ---
@@ -95,7 +89,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 <!-- LEADERBOARD_START -->
 | Rank | Player | 🖼️ Avatar | 🏹 Hits | 💦 Misses | 🎯 Accuracy | 🔥 Streak | 🚢 Sunk |
 |------|--------|-----------|----------|------------|--------------|------------|----------|
-| 🥇 | @TheM1ddleM1n | <img src='https://github.com/TheM1ddleM1n.png' width='32' height='32'> | 2 | 7 | 0.22 | 1 | 0 |
+| - | *No players yet* | - | - | - | - | - | - |
 <!-- LEADERBOARD_END -->
 
 ---
