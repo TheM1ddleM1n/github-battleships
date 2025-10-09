@@ -30,6 +30,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 - Strategic patterns may be detected - mix up your strategy!
 - `Only Owner is allowed to have no cooldown (so he can test some new updates) :D`
 - Track your stats! (on the all time or game leaderboard!)
+- MOST IMPORTANTLY DO NOT CHEAT!! or this game will become a failure lol
 
 ---
 
