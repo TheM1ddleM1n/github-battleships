@@ -54,5 +54,12 @@
     "result": "Hit",
     "ship": "carrier",
     "timestamp": "2025-10-10T18:24:08.795128+00:00"
+  },
+  {
+    "username": "TheM1ddleM1n",
+    "move": "F7",
+    "result": "Hit",
+    "ship": "battleship",
+    "timestamp": "2025-10-10T20:33:53.954960+00:00"
   }
 ]
