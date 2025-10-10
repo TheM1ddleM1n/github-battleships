@@ -1,11 +1,11 @@
 {
   "TheM1ddleM1n": {
     "username": "TheM1ddleM1n",
-    "total_hits": 6,
+    "total_hits": 7,
     "total_misses": 8,
-    "ships_sunk": 0,
+    "ships_sunk": 1,
     "games_won": 0,
     "games_played": 0,
-    "best_streak": 4
+    "best_streak": 5
   }
 }
