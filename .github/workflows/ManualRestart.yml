@@ -1,4 +1,4 @@
-name: Manual Game Reset
+name: Manual Game Reset (optional if you are a collab)
 
 on:
   issues:
