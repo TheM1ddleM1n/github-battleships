@@ -4,7 +4,7 @@ import time
 import random
 from github import Github
 
-# GitHub setup
+# To Setup GitHub
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 REPO_NAME = os.getenv("GITHUB_REPOSITORY")
 ISSUE_NUMBER = int(os.getenv("ISSUE_NUMBER"))
@@ -17,7 +17,7 @@ rows = "ABCDEFGHIJ"
 cols = [str(i) for i in range(1, 11)]
 ships_config = {"carrier": 5, "battleship": 4, "submarine": 3, "destroyer": 2, "patrol": 2}
 
-# Place ships randomly
+# Place ships in random positions
 def place_ship(size, occupied):
     max_attempts = 100
     attempts = 0
@@ -45,7 +45,7 @@ def place_ship(size, occupied):
     
     raise Exception(f"Could not place ship of size {size} after {max_attempts} attempts")
 
-# Generate new ships
+# Generate new ships according to if it is occupied or not!
 occupied = set()
 ship_map = {}
 
@@ -61,20 +61,20 @@ except Exception as e:
     issue.create_comment(f"❌ Error generating ships: {str(e)}")
     exit(1)
 
-# Create directories if they don't exist
+# Create the needed directories if they do not exist.
 os.makedirs("game", exist_ok=True)
 os.makedirs("game2", exist_ok=True)
 
-# Save new ships to game/ships.json
+# Save the new ships positions to game/ships.json
 with open("game/ships.json", "w") as f:
     json.dump(ship_map, f, indent=2)
 
-# Reset board
+# Reset board after all spaces filled
 board = {r + c: "" for r in rows for c in cols}
 with open("game/board.json", "w") as f:
     json.dump(board, f, indent=2)
 
-# Reset current game leaderboard and move history
+# Reset current game leaderboard and the move history from players of that match
 with open("game2/leaderboard.json", "w") as f:
     json.dump({}, f, indent=2)
 
@@ -82,7 +82,7 @@ with open("game2/move_history.json", "w") as f:
     json.dump([], f, indent=2)
 
 # Keep all-time leaderboard and achievements intact
-# Just ensure they exist
+# Just to make sure they exist
 if not os.path.exists("game2/all_time_leaderboard.json"):
     with open("game2/all_time_leaderboard.json", "w") as f:
         json.dump({}, f, indent=2)
@@ -140,42 +140,42 @@ except FileNotFoundError:
     issue.create_comment("❌ ERROR: README.md not found!")
     exit(1)
 
-# Update board
+# Update board.
 start = readme.find("<!-- BOARD_START -->")
 end = readme.find("<!-- BOARD_END -->")
 if start != -1 and end != -1:
     end += len("<!-- BOARD_END -->")
     readme = readme[:start] + "<!-- BOARD_START -->\n" + render_board_reset() + "<!-- BOARD_END -->" + readme[end:]
 
-# Update ship status
+# Update ship status.
 ship_start = readme.find("<!-- SHIP_STATUS_START -->")
 ship_end = readme.find("<!-- SHIP_STATUS_END -->")
 if ship_start != -1 and ship_end != -1:
     ship_end += len("<!-- SHIP_STATUS_END -->")
     readme = readme[:ship_start] + "<!-- SHIP_STATUS_START -->\n" + render_ship_status_reset() + "<!-- SHIP_STATUS_END -->" + readme[ship_end:]
 
-# Update game stats
+# Update game stats.
 stats_start = readme.find("<!-- GAME_STATS_START -->")
 stats_end = readme.find("<!-- GAME_STATS_END -->")
 if stats_start != -1 and stats_end != -1:
     stats_end += len("<!-- GAME_STATS_END -->")
     readme = readme[:stats_start] + "<!-- GAME_STATS_START -->\n" + render_game_stats_reset() + "<!-- GAME_STATS_END -->" + readme[stats_end:]
 
-# Update move history
+# Update move history.
 hist_start = readme.find("<!-- HISTORY_MOVES_START -->")
 hist_end = readme.find("<!-- HISTORY_MOVES_END -->")
 if hist_start != -1 and hist_end != -1:
     hist_end += len("<!-- HISTORY_MOVES_END -->")
     readme = readme[:hist_start] + "<!-- HISTORY_MOVES_START -->\n" + render_move_history_reset() + "<!-- HISTORY_MOVES_END -->" + readme[hist_end:]
 
-# Update current game leaderboard
+# Update current game leaderboard.
 lb_start = readme.find("<!-- LEADERBOARD_START -->")
 lb_end = readme.find("<!-- LEADERBOARD_END -->")
 if lb_start != -1 and lb_end != -1:
     lb_end += len("<!-- LEADERBOARD_END -->")
     readme = readme[:lb_start] + "<!-- LEADERBOARD_START -->\n" + render_leaderboard_reset() + "<!-- LEADERBOARD_END -->" + readme[lb_end:]
 
-# Write updated README
+# Write updated README.
 with open("README.md", "w") as f:
     f.write(readme)
 
@@ -195,7 +195,7 @@ issue.create_comment(
     "🎯 Once secret is updated, the game is ready!"
 )
 
-# Close issue after 30 seconds
+# Finally, closes the issue (move) after 30 seconds has passed!
 time.sleep(30)
 issue.edit(state="closed")
 
