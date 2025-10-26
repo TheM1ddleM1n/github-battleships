@@ -5,7 +5,7 @@ rows = "ABCDEFGHIJ"
 cols = [str(i) for i in range(1, 11)]
 ships_config = {"carrier": 5, "battleship": 4, "submarine": 3, "destroyer": 2, "patrol": 2}
 
-# Place ships randomly
+# Place ships in random positions
 def place_ship(size, occupied):
     while True:
         orientation = random.choice(["H", "V"])
