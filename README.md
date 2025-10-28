@@ -6,7 +6,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 
 ---
 
-## How to Play github-battleships?
+## How to Play `github-battleships`?
 
 1. **Open a new issue** with your move in the title: `Move: B4` or `/move B4`
 
@@ -20,7 +20,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 
 ---
 
-## The Game Rules
+## Game Rules
 
 - The board is 10x10 (A–J rows, 1–10 columns)
 - Ships are hidden — you won't know their locations!
@@ -30,7 +30,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 - Strategic patterns may be detected - mix up your strategy!
 - `Only Owner is allowed to have no cooldown (so he can test some new updates) :D`
 - Track your stats! (on the all time or game leaderboard!)
-- MOST IMPORTANTLY DO NOT CHEAT!! or this game will become a failure lol
+- MOST IMPORTANTLY PLEASE DO NOT CHEAT!! or this game will become a failed experiment LOL
 
 ---
 
@@ -116,14 +116,14 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 
 ## 🏆 Achievements
 
-Unlock badges by hitting milestones!
+***Unlock badges by hitting milestones***
 
-- 🎯 **Sharpshooter** - 80%+ accuracy with 10+ moves
-- 🔥 **Hot Streak** - 5 hits in a row
-- ⚡ **First Blood** - Get the first hit of the game
-- 🚢 **Ship Sinker** - Sink your first ship
-- 💀 **Fleet Destroyer** - Sink 3 or more ships
-- 🏆 **Victory Royale** - Win a game
+- 🎯 **Sharpshooter** - 80%+ accuracy with 10+ moves!
+- 🔥 **Hot Streak** - 5 hits in a row!
+- ⚡ **First Blood** - Get the first hit of the game!
+- 🚢 **Ship Sinker** - Sink your first ship in a game!
+- 💀 **Fleet Destroyer** - Sink 3 or more ships in a game!
+- 🏆 **Victory Royale** - To win a game!
 
 ---
 
@@ -132,7 +132,6 @@ Unlock badges by hitting milestones!
 - GitHub Actions & Secrets
 - Python-based game logic
 - JSON-based state management
-- Your brilliant moves!
 
 ---
 
@@ -143,4 +142,5 @@ Open an issue titled `Suggestion:` or `Question:` and let's make this game even 
 ---
 
 Ready to fire your first shot?
+
 **Open an issue and type your move now!** 🎯
