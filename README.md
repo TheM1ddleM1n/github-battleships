@@ -1,6 +1,6 @@
-# 🚢 GitHub Battleships!
+# 🚢 GitHub Battleships
 
-Welcome to **GitHub Battleships** — a turn-based game powered entirely by GitHub Issues and Actions/Secrets!
+Welcome to **GitHub Battleships** — a turn-based game powered entirely by GitHub Issues and Actions!
 
 Sink ships, climb the leaderboard, and flex your strategic genius — all from the comfort from your own GitHub Account!
 
@@ -129,7 +129,7 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 
 ## Powered By
 
-- GitHub Actions & Secrets
+- GitHub Actions
 - Python-based game logic
 - JSON-based state management
 
