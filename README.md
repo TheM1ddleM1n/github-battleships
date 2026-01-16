@@ -2,35 +2,37 @@
 
 Welcome to **GitHub Battleships** — a turn-based game powered entirely by GitHub Issues and Actions!
 
-Sink ships, climb the leaderboard, and flex your strategic genius — all from the comfort from your own GitHub Account!
+Sink ships, climb the leaderboard, and flex your strategic genius — all from the comfort of your own GitHub Account!
 
 ---
 
-## How to Play `github-battleships`?
+## How to Play
 
 1. **Open a new issue** with your move in the title: `Move: B4` or `/move B4`
 
 *(Only one move per issue, please! DO NOT SPAM consecutive cells like B4, B5, B6...)*
 
 2. The bot will:
-- Check if your move is valid
-- Update the game board
-- Reply to your issue with the result: `Hit!`, `Miss!`, or `Already Played`
-- Award achievements for milestones
+   - Check if your move is valid
+   - Update the game board
+   - Reply to your issue with the result: `Hit!`, `Miss!`, or `Already Played`
+   - Award achievements for milestones
 
 ---
 
 ## Game Rules
 
-- The board is 10x10 (A–J rows, 1–10 columns)
-- Ships are hidden — you won't know their locations!
-- Hits are marked with `💥`, misses with `🌊`
-- First player to sink all ships wins eternal glory 👑
-- 2-hour cooldown between moves (reduced for active players! sorry lol!)
-- Strategic patterns may be detected - mix up your strategy!
-- `Only Owner is allowed to have no cooldown (so he can test some new updates) :D`
-- Track your stats! (on the all time or game leaderboard!)
-- MOST IMPORTANTLY PLEASE DO NOT CHEAT!! or this game will become a failed experiment LOL
+- **Board:** 10x10 (A–J rows, 1–10 columns)
+- **Ships:** 5 hidden ships totaling 16 cells
+- **Hits:** Marked with `💥` | **Misses:** Marked with `🌊`
+- **Victory:** First player to sink all ships wins eternal glory 👑
+- **Cooldown:** 2-hour wait between moves (reduced for active players!)
+  - After 20 moves: 1.5 hours
+  - After 50 moves: 1 hour
+  - Owner (@TheM1ddleM1n): No cooldown
+- **Strategy:** Mix up your moves! Systematic patterns are detected 🎲
+- **Achievements:** Unlock badges by hitting milestones
+- **No Cheating:** Play fair or this experiment ends! 🤐
 
 ---
 
@@ -118,29 +120,201 @@ Sink ships, climb the leaderboard, and flex your strategic genius — all from t
 
 ***Unlock badges by hitting milestones***
 
-- 🎯 **Sharpshooter** - 80%+ accuracy with 10+ moves!
-- 🔥 **Hot Streak** - 5 hits in a row!
-- ⚡ **First Blood** - Get the first hit of the game!
-- 🚢 **Ship Sinker** - Sink your first ship in a game!
-- 💀 **Fleet Destroyer** - Sink 3 or more ships in a game!
-- 🏆 **Victory Royale** - To win a game!
+- 🎯 **Sharpshooter** - 80%+ accuracy with 10+ moves
+- 🔥 **Hot Streak** - 5 consecutive hits in a row
+- ⚡ **First Blood** - Get the first hit of the game
+- 🚢 **Ship Sinker** - Sink your first ship in a game
+- 💀 **Fleet Destroyer** - Sink 3 or more ships in a game
+- 🏆 **Victory Royale** - Win a game
+
+---
+
+## 🛳️ Fleet Details
+
+| Ship | Size | Icon | Status |
+|------|------|------|--------|
+| Carrier | 5 cells | 🛳️ | Longest ship |
+| Battleship | 4 cells | ⚓ | Classic warship |
+| Submarine | 3 cells | 🔱 | Stealthy |
+| Destroyer | 2 cells | ⛴️ | Fast attack |
+| Patrol | 2 cells | 🛥️ | Reconnaissance |
+
+---
+
+## 🎮 Example Moves
+
+Here are some ways to make your move:
+
+```
+✅ Valid moves:
+- /move A1
+- /move J10
+- Move: B5
+- move c3 (lowercase works too!)
+
+❌ Invalid moves:
+- B11 (out of bounds)
+- 1A (wrong format)
+- Move B4 B5 B6 (multiple cells)
+```
+
+---
+
+## 💡 Tips for Success
+
+1. **Mix it up** - Don't scan rows/columns systematically. You'll get warned! 🎲
+2. **Be patient** - Respect the cooldown. Active players get reduced wait times ⏰
+3. **Track patterns** - Notice where ships are likely to be (corners, middle)
+4. **Hunt efficiently** - Once you hit a ship, search nearby cells
+5. **Play fair** - No cheating or this experiment ends 🤐
+
+---
+
+## 🔄 Game Commands
+
+### For Players
+
+**Make a move:**
+```
+Title: Move: B4
+or
+Body: /move J10
+```
+
+### For Admins/Collaborators
+
+**Reset the game manually:**
+```
+Title: Reset Game
+```
+
+This command is available only to repo admins. It will:
+- Generate new ship positions
+- Clear the board
+- Reset current game leaderboard
+- Preserve all-time stats
+- Update the README
+
+---
+
+## 🚀 How It Works
+
+The game runs on **GitHub Actions** with pure Python:
+
+- **GitHub Issues** - Your moves
+- **GitHub Actions** - Game logic & state updates
+- **JSON files** - Board, ships, leaderboard storage
+- **README** - Live game display
+
+Every move:
+1. Creates an issue with `/move B4`
+2. Bot validates the move
+3. Updates board & leaderboard
+4. Commits changes to repo
+5. Closes the issue
+
+---
+
+## 📊 Statistics
+
+**Game Status:**
+- Total rounds played: *Check the `/rounds/` folder*
+- Current active players: See leaderboard above
+- Longest win streak: See all-time leaderboard
+- Most accurate player: See leaderboard accuracy
+
+**Server Performance:**
+- Move processing: ~1-2 seconds
+- Cooldown: 2 hours (configurable per activity level)
+- Board update: Real-time
+- Concurrency: Safe (file-locked)
+
+---
+
+## 🔐 Security & Fair Play
+
+- **Anti-Cheat:** Pattern detection alerts on suspicious strategies
+- **File Integrity:** Board state is verified before/after moves
+- **No Spoilers:** Ship positions are randomized and never revealed until game end
+- **Fair Cooldown:** Owner has no cooldown for testing; all other players equal
+- **Move Validation:** Every move is checked for validity and conflicts
+
+---
+
+## 🐛 Issues & Suggestions
+
+Found a bug? Have an idea? Open an issue!
+
+**Issue types:**
+- 🐛 `Bug: [description]` - Report problems
+- 💡 `Suggestion: [description]` - Feature requests
+- ❓ `Question: [description]` - Ask questions
+- 🎮 `Feedback: [description]` - Game balance feedback
+
+---
+
+## 📖 More Information
+
+For detailed technical documentation, game architecture, and troubleshooting, see:
+- **[IMPROVEMENTS.md](./docs/IMPROVEMENTS.md)** - Technical architecture & improvements
+- **[SETUP.md](./docs/SETUP.md)** - Installation & configuration guide
+
+---
+
+## 🎯 Quick Start
+
+1. **Read the rules** (above)
+2. **Look at the board** (current game board section)
+3. **Pick a cell** (A1 to J10)
+4. **Open an issue** with title: `Move: B4`
+5. **Wait for the bot** to respond with hit/miss
+6. **Climb the leaderboard!** 🏆
+
+---
+
+## 💬 FAQ
+
+**Q: How long do I have to wait between moves?**
+A: 2 hours normally, but it reduces to 1.5 hours after 20 moves, and 1 hour after 50 moves. Owner has no cooldown.
+
+**Q: Can I see where the ships are?**
+A: No! Ship positions are secret until the game ends. When someone wins, all ships are revealed.
+
+**Q: What if I accidentally make a move?**
+A: You can't undo moves. They're permanent! Double-check before submitting.
+
+**Q: Can multiple people play at once?**
+A: Yes! Everyone attacks the same board. First to sink all ships wins.
+
+**Q: How do achievements work?**
+A: They unlock automatically when you hit milestones. Check the current game leaderboard to see your badges!
+
+**Q: Is there a maximum number of moves?**
+A: No! The game goes until someone sinks all ships.
+
+**Q: Why did I get a pattern warning?**
+A: The game detects systematic grid-sweeping and gently suggests mixing up your strategy. It's just a warning—keep playing your way!
 
 ---
 
 ## Powered By
 
-- GitHub Actions
-- Python-based game logic
-- JSON-based state management
+- ⚙️ **GitHub Actions** - Workflow automation
+- 🐍 **Python** - Game logic
+- 📄 **JSON** - State management
+- 🔒 **File Locking** - Concurrency safety
+- 💾 **Git** - Version control
 
 ---
 
-## 💬 Any Questions, Bugs or Ideas?
+## 🎉 Ready to Play?
 
-Open an issue titled `Suggestion:` or `Question:` and let's make this game even better!
+**[Create an issue and make your first move now!](../../issues/new?title=Move:%20B4)**
+
+Good luck, Admiral! ⚓🎯
 
 ---
 
-Ready to fire your first shot?
-
-**Open an issue and type your move now!** 🎯
+**Version:** 2.0 (Improved & Hardened)  
+**Last Updated:** January 2026  
+**Status:** ✅ Live & Production Ready
