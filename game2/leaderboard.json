@@ -1,13 +1,13 @@
 {
   "TheM1ddleM1n": {
     "hits": 6,
-    "misses": 3,
-    "streak": 6,
+    "misses": 4,
+    "streak": 0,
     "username": "TheM1ddleM1n",
     "ships_sunk": 1,
     "games_won": 0,
     "games_played": 0,
-    "accuracy": 0.67,
-    "last_move": "2025-10-10T20:33:53.954960+00:00"
+    "accuracy": 0.6,
+    "last_move": "2026-01-16T23:50:34.126715+00:00"
   }
 }
