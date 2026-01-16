@@ -1,6 +1,11 @@
 """
-scripts/process_move.py
-Process player moves with improved error handling, security, and locking
+scripts/process_move.py (UPDATED)
+Process player moves with comprehensive duplicate prevention
+
+Integration points with duplicate_prevention.py:
+- check_for_duplicates() - Main duplicate check
+- log_duplicate_attempt() - Log suspicious activity
+- track_move_ip() - Track IP for pattern analysis
 """
 
 import os
@@ -21,7 +26,12 @@ from common import (
     get_remaining_ships, check_achievements, render_board, render_ship_status,
     render_move_history, render_game_stats, render_leaderboard,
     render_all_time_leaderboard, update_readme_section, archive_round,
-    verify_board_integrity, calculate_board_checksum, ensure_directories
+    verify_board_integrity, ensure_directories
+)
+
+from duplicate_prevention import (
+    check_for_duplicates, get_user_ip, track_move_ip,
+    log_duplicate_attempt, get_duplicate_report
 )
 
 # ============================================================================
@@ -107,7 +117,6 @@ def load_game_state() -> tuple:
     # Verify board integrity
     if not verify_board_integrity(board, ships):
         issue.create_comment("⚠️ WARNING: Board state inconsistency detected. Please notify maintainers.")
-        # Continue anyway, but log it
     
     return board, ships, leaderboard, all_time_lb, move_history, achievements
 
@@ -153,6 +162,42 @@ def init_player_data(leaderboard: dict, all_time_lb: dict, achievements: dict, u
     return player, all_time_player, user_achievements
 
 # ============================================================================
+# DUPLICATE PREVENTION CHECK
+# ============================================================================
+
+def validate_move_with_duplicates(
+    move: str,
+    board: dict,
+    leaderboard: dict,
+    move_history: list,
+    username: str
+) -> Tuple[bool, str]:
+    """
+    Comprehensive move validation including duplicate prevention.
+    
+    Returns:
+        (is_valid, message)
+    """
+    # Get user IP (if available)
+    user_ip = get_user_ip()
+    
+    # Check for all types of duplicates
+    is_duplicate, error_msg, violation_type = check_for_duplicates(
+        move=move,
+        username=username,
+        board=board,
+        move_history=move_history,
+        leaderboard=leaderboard,
+        user_ip=user_ip
+    )
+    
+    if is_duplicate:
+        issue.create_comment(error_msg)
+        return False, error_msg
+    
+    return True, ""
+
+# ============================================================================
 # PROCESS MOVE
 # ============================================================================
 
@@ -177,7 +222,7 @@ def process_move(move: str, board: dict, ships: dict, player: dict, move_history
         "error": None
     }
     
-    # Check if cell already played
+    # Check if cell already played (extra safety check)
     if board[move] != "":
         result["is_valid"] = False
         result["error"] = f"⚠️ `{move}` was already played and marked as `{board[move]}`."
@@ -255,6 +300,14 @@ def main():
         leaderboard, all_time_lb, achievements, username
     )
     
+    # ===== NEW: DUPLICATE PREVENTION CHECK =====
+    is_valid, dup_msg = validate_move_with_duplicates(
+        move, board, leaderboard, move_history, username
+    )
+    if not is_valid:
+        sys.exit(0)
+    # ============================================
+    
     # Check cooldown
     is_valid, cooldown_msg = check_cooldown(player, username)
     if not is_valid:
@@ -292,10 +345,15 @@ def main():
     })
     move_history = move_history[-CONFIG["MOVE_HISTORY_LIMIT"]:]
     
+    # ===== NEW: TRACK MOVE FOR IP ANALYSIS =====
+    user_ip = get_user_ip()
+    track_move_ip(username, move, user_ip, "Hit" if move_result["is_hit"] else "Miss")
+    # ===========================================
+    
     # Check for achievements
     new_badges = check_achievements(
         player, get_ship_status(ships, board),
-        game_won=False,  # Check at end
+        game_won=False,
         existing_badges=user_achievements["badges"]
     )
     
